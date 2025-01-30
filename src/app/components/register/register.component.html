@@ -1,0 +1,162 @@
+<div>
+  <div>
+    <mat-card class="example-card">
+      <mat-card-title>Register</mat-card-title>
+      <mat-card-content>
+        <form class="example-form" *ngIf="!isSuccessful"
+              name="form"
+              (ngSubmit)="f.form.valid && onSubmit(f)"
+              #f="ngForm"
+              novalidate>
+          <mat-form-field>
+            <mat-label>First name</mat-label>
+            <input matInput placeholder="First Name" type="text"
+                   name="firstName"
+                   [(ngModel)]="form.firstName"
+                   required
+                   maxlength="20"
+                   myAutoFocus
+                   #name="ngModel">
+            <mat-error *ngIf="name.invalid">
+              First name is required!
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last name</mat-label>
+            <input matInput placeholder="Last Name" type="text"
+                   name="lastName"
+                   [(ngModel)]="form.lastName"
+                   required
+                   maxlength="20"
+                   myAutoFocus
+                   #name="ngModel">
+            <mat-error *ngIf="name.invalid">
+              Last name is required!
+            </mat-error>
+          </mat-form-field>
+<!--          <mat-form-field>-->
+            <work-time-avatar (fileChanged)="onFileChanged($event)"></work-time-avatar>
+<!--          </mat-form-field>-->
+<!--          <mat-form-field>-->
+<!--            <input matInput placeholder="Address" type="text"-->
+<!--                   name="address"-->
+<!--                   [(ngModel)]="form.address"-->
+<!--                   maxlength="90"-->
+<!--                   #address="ngModel">-->
+<!--          </mat-form-field>-->
+<!--          <mat-form-field>-->
+<!--            <input matInput placeholder="City" type="text"-->
+<!--                   name="city"-->
+<!--                   [(ngModel)]="form.city"-->
+<!--                   maxlength="90"-->
+<!--                   #city="ngModel">-->
+<!--          </mat-form-field>-->
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input type="email" matInput matNativeControl placeholder="Email" type="email"
+                   class="form-control"
+                   name="email"
+                   [(ngModel)]="form.email"
+                   required
+                   email
+                   [disabled]="userId != null"
+                   #email="ngModel">
+            <mat-error *ngIf="f.submitted && email.invalid">
+              Email is already used. <a *ngIf="!userId" href="/login" routerLink="/login">Sign in ? </a>
+            </mat-error>
+            <mat-error *ngIf="email.invalid">
+              <div *ngIf="email.errors?.['required']">Email is required</div>
+              <div *ngIf="email.errors?.['email']">
+                Email must be a valid email address
+              </div>
+            </mat-error>
+          </mat-form-field>
+<!--          <mat-form-field>-->
+<!--            <input type="text" matInput placeholder="User Name" type="text"-->
+<!--                   class="form-control"-->
+<!--                   name="username"-->
+<!--                   [(ngModel)]="form.username"-->
+<!--                   required-->
+<!--                   minlength="3"-->
+<!--                   maxlength="20"-->
+<!--                   [disabled]="userId != null"-->
+<!--                   #username="ngModel">-->
+<!--            <mat-error *ngIf="f.submitted && username.invalid">-->
+<!--              Username is already used. Please select another one.-->
+<!--            </mat-error>-->
+<!--            <mat-error *ngIf="username.invalid">-->
+<!--              <div *ngIf="username.errors?.['required']">Username is required</div>-->
+<!--              <div *ngIf="username.errors?.['minlength']">-->
+<!--                Username must be at least 3 characters-->
+<!--              </div>-->
+<!--              <div *ngIf="username.errors?.['maxlength']">-->
+<!--                Username must be at most 20 characters-->
+<!--              </div>-->
+<!--            </mat-error>-->
+<!--          </mat-form-field>-->
+<!--          <mat-form-field>-->
+<!--            <input matInput [matDatepicker]="picker2" #birthDate (focus)="picker2.open()" [(ngModel)]="form.birthDate" id="birthDate" placeholder="Date of birth" name="birthDate">-->
+<!--            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>-->
+<!--            <mat-datepicker #picker2 (closed)="birthDate.blur()"></mat-datepicker>-->
+<!--          </mat-form-field>-->
+          <!--      <mat-form-field>-->
+          <!--        <mat-label>Phone number</mat-label>-->
+          <!--        <app-tel-input required></app-tel-input>-->
+          <!--        <mat-icon matSuffix>phone</mat-icon>-->
+          <!--        <mat-hint>Include area code</mat-hint>-->
+          <!--      </mat-form-field>-->
+<!--          <mat-form-field >-->
+<!--            &lt;!&ndash;        <mat-label>Phone number</mat-label>&ndash;&gt;-->
+<!--            <input matInput placeholder="Phone number" type="text"-->
+<!--                   name="phoneNumber"-->
+<!--                   [(ngModel)]="form.phoneNumber"-->
+<!--                   maxlength="30"-->
+<!--                   #phoneNumber="ngModel">-->
+<!--            <mat-icon matSuffix>phone</mat-icon>-->
+<!--          </mat-form-field>-->
+          <mat-form-field *ngIf="!userId">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'"
+                   type="password"
+                   name="password"
+                   [(ngModel)]="form.password"
+                   required
+                   minlength="6"
+                   #password="ngModel">
+            <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+            <mat-error *ngIf="f.submitted && password.invalid">
+              <div *ngIf="password.errors?.['required']">Password is required</div>
+              <div *ngIf="password.errors?.['minlength']">
+                Password must be at least 6 characters
+              </div>
+            </mat-error>
+          </mat-form-field>
+          <!--    <mat-form-field *ngIf="!userId">-->
+          <!--      <input matInput type="password"-->
+          <!--             name="password2" [(ngModel)]="form.password2" minlength="4" #password2="ngModel" (input)="onPasswordInput()"  required placeholder="Repeat your password" [type]="hidePassword ? 'password' : 'text'">-->
+          <!--      <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}-->
+          <!--      </mat-icon>-->
+          <!--      &lt;!&ndash;         <mat-error *ngIf="form.password2?.hasError('required')">Please confirm your password</mat-error>&ndash;&gt;-->
+          <!--      &lt;!&ndash;         <mat-error *ngIf="form.password2?.invalid && !form.password2?.hasError('required')">Passwords don't match</mat-error>&ndash;&gt;-->
+          <!--      <mat-error *ngIf="form?.password2?.dirty && form.password !== form.password2">-->
+          <!--        Passwords must be equal.-->
+          <!--      </mat-error>-->
+          <!--    </mat-form-field>-->
+          <br>
+          <a *ngIf="!userId" href="/login" routerLink="/login" id="login">Login </a>
+
+          <div class="alert alert-danger" *ngIf="f.submitted && isSignUpFailed">
+            <br/>Sign-up failed!
+          </div>
+
+          <div class="button">
+            <button type="submit" [disabled]="f.invalid" mat-raised-button color="primary" mat-button>{{userId ? 'Save' : 'Register'}}</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div>
+  </div>
+</div>

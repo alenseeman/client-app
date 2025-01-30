@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <span class="app-title">Time Logger</span>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="openTimeList()" aria-label="Time List">
+    <mat-icon>list</mat-icon>
+  </button>
+  <button mat-icon-button (click)="editProfileData()" aria-label="Profile">
+    <mat-icon>user</mat-icon>
+  </button>
+  <button mat-icon-button (click)="logout()" aria-label="Logout">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="button-container">
+  <div class="button-row">
+    <button mat-raised-button color="primary" (click)="startLogging()" class="big-button">Start</button>
+    <button mat-raised-button color="warn" (click)="endLogging()" class="big-button">End</button>
+  </div>
+  <div class="button-row">
+    <button mat-raised-button color="accent" (click)="pauseStartLogging()" class="big-button">Pause Start</button>
+    <button mat-raised-button color="accent" (click)="pauseEndLogging()" class="big-button">Pause End</button>
+  </div>
+
+  <!-- New row for smaller buttons -->
+  <div class="small-button-container">
+    <button mat-raised-button color="primary" (click)="arztStart()" class="small-button">Arzt Start</button>
+    <button mat-raised-button color="warn" (click)="arztEnd()" class="small-button">Arzt Ende</button>
+    <button mat-raised-button color="accent" (click)="dnStart()" class="small-button">DN Start</button>
+    <button mat-raised-button color="accent" (click)="dnEnd()" class="small-button">DN Ende</button>
+  </div>
+</div>

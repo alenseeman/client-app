@@ -1,0 +1,88 @@
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 64px); /* Adjust height to account for toolbar */
+}
+
+.button-row {
+  display: flex;
+  justify-content: center; /* Center buttons in each row */
+  margin: 10px; /* Space between rows */
+}
+
+.big-button {
+  width: 120px; /* Increased width for larger buttons */
+  height: 120px; /* Increased height for larger buttons */
+  font-size: 18px; /* Adjusted font size for better readability */
+  margin: 10px; /* Space between buttons */
+
+  border-radius: 12px; /* Rounded corners for a modern look */
+
+  /* Shadow for the modern effect */
+  box-shadow:
+    rgba(0,0,0,0.2) 0px 4px 8px,
+    rgba(255,255,255,0.5) inset -1px -1px; /* Inner shadow for depth */
+
+  transition: background-color .3s, transform .2s, box-shadow .2s; /* Smooth transition effects */
+}
+
+/* Hover effects for a modern touch */
+.big-button:hover {
+  background-color: rgba(0,0,0,0.1); /* Lighten background on hover */
+  transform: translateY(-4px); /* Slight lift effect on hover */
+  box-shadow:
+    rgba(0,0,0,0.3) 0px 8px 16px,
+    rgba(255,255,255,0.5) inset -1px -1px;
+}
+
+.big-button:active {
+  transform: translateY(2px); /* Push down effect when clicked */
+  box-shadow: none; /* Remove shadow to enhance pressed effect */
+}
+
+/* Styles for the toolbar */
+mat-toolbar {
+  display: flex;
+  justify-content: space-between; /* Space between title and buttons */
+  padding: 0 20px; /* Padding on left and right */
+}
+
+.spacer {
+  flex: 1; /* Spacer to push logout and time list buttons to the right */
+}
+
+.app-title {
+  font-weight: bold;
+  color: white;
+  font-size: larger; /* Larger font size for title */
+}
+
+.small-button-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping of buttons if not enough space */
+  justify-content: center; /* Center the small buttons */
+  margin-top: 20px; /* Space above small buttons */
+}
+
+.small-button {
+  /*width: calc(50% - 20px); !* Two buttons per row with spacing *!*/
+  height: 40px; /* Height for smaller buttons */
+  font-size: 16px; /* Font size for better readability */
+  margin: 10px; /* Space between small buttons */
+
+  border-radius: 8px; /* Rounded corners for a modern look */
+
+  transition: background-color .3s, transform .2s, box-shadow .2s; /* Smooth transition effects */
+}
+
+/* Hover effects for small buttons */
+.small-button:hover {
+  background-color: rgba(0,0,0,0.1); /* Lighten background on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.small-button:active {
+  transform: translateY(1px); /* Push down effect when clicked */
+}

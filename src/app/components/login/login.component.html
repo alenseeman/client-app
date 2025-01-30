@@ -1,0 +1,54 @@
+    <mat-card class="example-card">
+      <mat-card-title>Anmelden</mat-card-title>
+      <mat-card-content>
+        <form class="example-form"  *ngIf="!isLoggedIn"
+              name="form"
+              (ngSubmit)="f.form.valid && onSubmit()"
+              #f="ngForm"
+              novalidate>
+          <mat-form-field style="display: block">
+            <mat-label>Benutzer</mat-label>
+            <input type="text" matInput placeholder="Benutzer" name="benutzer"
+                   [(ngModel)]="form.username"
+                   required
+                   myAutoFocus
+                   #username="ngModel">
+            <mat-error *ngIf="username.invalid">
+              Benutzer ist erforderlich!
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field style="display: block">
+            <mat-label>Passwort</mat-label>
+            <input matInput type="password" placeholder="Geben Sie Ihr Passwort ein" name="passwort"
+                   [(ngModel)]="form.password"
+                   required
+                   [minLength]="1"
+                   #password="ngModel"
+                   [type]="hidePassword ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+            <mat-hint align="end">Das Passwort muss mindestens 6 Zeichen lang sein</mat-hint>
+            <mat-error *ngIf="password.errors?.['required']">Password is required</mat-error>
+            <mat-error *ngIf="f.submitted && password.errors?.['minlength']">
+              Das Passwort muss mindestens 6 Zeichen lang sein
+            </mat-error>
+          </mat-form-field>
+          <br>
+
+
+          <div class="button">
+            <a
+              id="Register"
+              routerLink="/register">Register </a>
+            <button type="submit" [disabled]="f.invalid" mat-raised-button color="primary" mat-button>Anmelden</button>
+          </div>
+          <div
+            class="alert-danger"
+            role="alert"
+            *ngIf="f.submitted && isLoginFailed"
+          >
+            Anmeldung fehlgeschlagen: Überprüfen Sie Benutzernamen und Passwort
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
